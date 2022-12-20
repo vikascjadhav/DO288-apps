@@ -267,7 +267,7 @@ parameters:
   displayName: Application Source Git URL
   description: The Git URL of the application source code
   required: true
-  value: https://github.com/tsrana/php-quotes
+  value: https://github.com/vikascjadhav/DO288-apps/tree/main/exam-EX288-practice/template/php-quotes
 - name: PASSWORD
   displayName: Database Password
   description: Password to access the database
@@ -278,4 +278,5 @@ parameters:
   description: Secret for webhooks
   generate: expression
   from: '[a-zA-Z0-9]{40}'
-
+- name: CUSTOM_NAME_PARAM
+  value: Vikas-Jadhav
