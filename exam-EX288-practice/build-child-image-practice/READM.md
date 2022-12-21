@@ -28,4 +28,10 @@ Part 3 create child image from parent image and run it
  push parent -image in repository like qauyio
  create secret link secret with project in openshift and run s2i build with github location of child dockerfile
 
+run below commnet by using image build from fixed parent image 
+
+
+oc new-app --name build-child --strategy=docker  https://github.com/vikascjadhav/DO288-apps --context-dir exam-EX288-practice/build-child-image-practice/httpd-child
+
+
 
