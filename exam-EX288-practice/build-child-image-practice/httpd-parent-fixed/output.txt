@@ -1,0 +1,42 @@
+STEP 1/15: FROM registry.access.redhat.com/ubi8/ubi:8.0
+STEP 2/15: MAINTAINER Red Hat Training <training@redhat.com>
+--> Using cache 26c19926ff415617b024846677e0e520e43962af8e058f0c095e02900bc23cb4
+--> 26c19926ff4
+STEP 3/15: ENV DOCROOT=/var/www/html 
+--> Using cache 36483e1932dcbef1084143562cc767465782b15f2208d143ba10e4878fa683c8
+--> 36483e1932d
+STEP 4/15: RUN   yum install -y --nodocs --disableplugin=subscription-manager httpd &&       yum clean all --disableplugin=subscription-manager -y &&       echo "Hello from the httpd-parent container!" > ${DOCROOT}/index.html
+--> Using cache e65b1a89a6aa7e90cb003c30c803617516d624e14db99aa670aaa5673a091830
+--> e65b1a89a6a
+STEP 5/15: ONBUILD COPY src/ ${DOCROOT}/
+--> Using cache 48cf1d4005c3658fb0449823bc097f308abf246b469460a1cacfd03cbb5f183b
+--> 48cf1d4005c
+STEP 6/15: EXPOSE 8080
+--> Using cache edda1271fe59ff42a2e28f06b2cadc44d6e891da53a5dcd52bfc697d671c7c8f
+--> edda1271fe5
+STEP 7/15: RUN rm -rf /run/httpd && mkdir /run/httpd
+--> Using cache 480acec5f1fd5a707be5e3245f3ed4d004b779bb78be58022f756140e4a4f429
+--> 480acec5f1f
+STEP 8/15: RUN pwd && printf "RUn" &&  ls /var/run  && printf "\n varlog****\n" &&  ls /var/log &&    printf "\n ETC CONF **** \n" && cat /etc/httpd/conf/httpd.conf
+--> Using cache b7cf68e695382568f12f90162cc0bf011af2a16d6ce28293aef20b31b3b8ca3c
+--> b7cf68e6953
+STEP 9/15: RUN sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g' /etc/httpd/conf/httpd.conf 
+--> Using cache d9cab1a005b7f7344726f65a34983b5a92c5cf1510fd1e63993aa927debd7058
+--> d9cab1a005b
+STEP 10/15: RUN chgrp -R  0 /var/run/httpd 
+--> Using cache 60f20c7f36cec6b97dac26a0d135aca0902b2caee6eb12cee41c910b0f1ee066
+--> 60f20c7f36c
+STEP 11/15: RUN  chgrp -R 0 /var/log/httpd/ 
+--> Using cache abe7275a0cbcb251bd39ef4e69b30b065fa7b817d1ca9675945420606a955044
+--> abe7275a0cb
+STEP 12/15: RUN  chmod -R g=u /var/run/httpd 
+--> 45f1998716d
+STEP 13/15: RUN  chmod -R g=u /var/log/httpd/ 
+--> 3b4ff3d51ad
+STEP 14/15: USER 1001
+--> 91848c40433
+STEP 15/15: CMD /usr/sbin/httpd -DFOREGROUND
+COMMIT httpd-parent
+--> 002a386c196
+Successfully tagged localhost/httpd-parent:latest
+002a386c196133c30946a7012c0e7b87612afd61e55582fa1be1130e15728bb7
