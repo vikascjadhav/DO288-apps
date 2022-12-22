@@ -19,7 +19,8 @@ EXPOSE 80
 # This stuff is needed to ensure a clean start
 #RUN rm -rf /run/httpd && mkdir /run/httpd
 
-RUN rm -rf /run/httpd/ &&  mkdir /run/httpd &&  sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:80/g' 
+RUN rm -rf /run/httpd/ &&  mkdir /run/httpd 
+RUN  sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:80/g' /etc/httpd/conf/httpd.conf 
 #RUN pwd && printf "RUn" &&  ls /var/run  && printf "\n varlog****\n" &&  ls /var/log &&    printf "\n ETC CONF **** \n" && cat /etc/httpd/conf/httpd.conf
 #RUN sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g' /etc/httpd/conf/httpd.conf 
 #RUN chgrp -R  0 /var/run/httpd 
