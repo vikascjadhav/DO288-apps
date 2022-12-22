@@ -9,11 +9,12 @@ ENV DOCROOT=/var/www/html
 RUN   yum install -y --nodocs --disableplugin=subscription-manager httpd && \
       yum clean all --disableplugin=subscription-manager -y && \
       echo "Hello from the httpd-parent container!" > ${DOCROOT}/index.html  
-RUN  chgrp -R  0 /var/run/httpd  /var/log/httpd/ &&   chmod -R g=u /var/run/httpd  /var/log/httpd/   
-RUN  rm -rf /run/httpd/ &&  mkdir /run/httpd 
-RUN  sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g' /etc/httpd/conf/httpd.conf 
 ONBUILD COPY src/ ${DOCROOT}/
 
+RUN  rm -rf /run/httpd/ &&  mkdir /run/httpd 
+
+RUN  sed -i 's/Listen 80/Listen 8080/g' /etc/httpd/conf/httpd.conf && sed -i 's/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g' /etc/httpd/conf/httpd.conf 
+RUN  chgrp -R  0 /var/run/httpd  /var/log/httpd/ &&   chmod -R g=u /var/run/httpd  /var/log/httpd/   
 EXPOSE 8080
 
 # This stuff is needed to ensure a clean start
