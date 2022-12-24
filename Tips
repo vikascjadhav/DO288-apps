@@ -7,3 +7,6 @@ https://www.programmingwithwolfgang.com/readiness-health-probes-kubernetes/
 Reduce docker image layer: using rerrage of csource for copy command.
 
 https://emmer.dev/blog/reducing-docker-layers/
+
+
+Adding label tag to helm char called tag=latest
