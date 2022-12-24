@@ -10,3 +10,8 @@ https://emmer.dev/blog/reducing-docker-layers/
 
 
 Adding label tag to helm char called tag=latest
+
+
+Do we need to upload template and modify it ??
+Modify a template that has already been uploaded
+oc edit template
