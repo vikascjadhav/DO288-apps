@@ -15,3 +15,7 @@ Adding label tag to helm char called tag=latest
 Do we need to upload template and modify it ??
 Modify a template that has already been uploaded
 oc edit template
+
+
+
+https://developer.hashicorp.com/consul/docs/k8s/helm
